@@ -1,0 +1,17 @@
+npm init -y
+
+
+
+npm i express cors
+
+
+
+npm i nodemon 
+
+
+npm i body-parse
+
+npm start
+
+npm i mysql
+
