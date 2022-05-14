@@ -71,3 +71,4 @@ Livro.delete = function(id, result){
         }
     });
 };
+ 
