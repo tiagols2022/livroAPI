@@ -15,7 +15,7 @@ exports.findAll = function(req, res){
 };
 
 exports.create = function(req, res){
-    const livro = new livro(req.body);
+    const livro = new Livro(req.body);
 
     if(req.body.construtor === Object && Object.keys(req.body).length === 0){
 
@@ -56,6 +56,7 @@ exports.update = function(req, res) {
         });
 
     }else{
+        console.log(req.params.id, new Livro(req.body));
         Livro.update(req.params.id, new Livro(req.body),
         function(err, livro) {
             if(err)
@@ -63,7 +64,7 @@ exports.update = function(req, res) {
 
             res.json({
                 error: true,
-                message: "Livro atualizado com sucesso"
+                message: "Erro ao deletar Livro"
             });    
         });
     }
@@ -77,7 +78,7 @@ exports.delete = function(req, res) {
 
         res.json({
             error: true,
-            message: "Erro ao deletar Livro"
+            message: "Livro deletado com sucesso"
         });
     });
 };

@@ -7,8 +7,9 @@ var Livro = function(livro){
     this.autor           = livro.autor;
     this.anoPublicacao   = livro.anoPublicacao;
     this.editora         = livro.editora;
-    this.created_at      = new Date();
-    this.updated_at      = new Date();
+    this.lancamento      = livro.lancamento;
+   // this.created_at      = new Date();
+   // this.updated_at      = new Date();
 }
 
 Livro.create = function(newLivro, result) {
@@ -23,8 +24,8 @@ Livro.create = function(newLivro, result) {
 };
 
 
-Livro.findBy = function(id, result){
-    dbConn.query("select * from livro where id = ? ", id, function(err, res) {
+Livro.findById = function(id, result){
+    dbConn.query("select * from livro where idlivro = ? ", id, function(err, res) {
         if(err){
             console.log("error: ",err);
             result(null, err);
@@ -48,8 +49,8 @@ Livro.findAll = function (result) {
 };
 
 Livro.update = function(id, livro, result){
-dbConn.query("UPDATE livro SET nome=?, autor=?, anoPublicacao=?, editora=?, created_at=?, updated_at=? where id=?",
-[livro.nome, livro.autor, livro.anoPublicacao, livro.editora, id],
+dbConn.query("UPDATE livro SET nome=?, autor=?, anoPublicacao=?, editora=?, lancamento=? where idlivro=?",
+[livro.nome, livro.autor, livro.anoPublicacao, livro.editora, livro.lancamento, id],
     function(err, res){
         if(err){
             console.log("error: ", err);
@@ -62,7 +63,7 @@ dbConn.query("UPDATE livro SET nome=?, autor=?, anoPublicacao=?, editora=?, crea
 
 
 Livro.delete = function(id, result){
-    dbConn.query("DELET FROM livro where id = ?", [id], function(err, res){
+    dbConn.query("DELETE FROM livro where idlivro = ?", [id], function(err, res){
         if(err){
             console.log("error: ", err);
             result(null, err);
@@ -72,3 +73,5 @@ Livro.delete = function(id, result){
     });
 };
  
+
+module.exports = Livro;
